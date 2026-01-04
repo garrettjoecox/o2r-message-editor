@@ -33,9 +33,10 @@ export default function Home() {
     const blob = messagesToBlob(messagesToExport)
     const binaryData = await blob.arrayBuffer()
     
-    // Create a zip file with the proper structure
+    // Create a zip file with the proper structure using a random UUID
+    const uuid = crypto.randomUUID()
     const zip = new JSZip()
-    zip.file("override/text/nes_message_data_static/nes_message_data_static", binaryData)
+    zip.file(`override/text/nes_message_data_static/${uuid}`, binaryData)
     
     // Generate the zip file
     const zipBlob = await zip.generateAsync({ type: "blob" })

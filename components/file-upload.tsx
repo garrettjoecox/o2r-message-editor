@@ -42,6 +42,18 @@ export function FileUpload({ onFileLoad }: FileUploadProps) {
             }
           }
           
+          // If not found, try glob pattern
+          if (!messageFile) {
+            const globPattern = /^override\/text\/nes_message_data_static\/[^\/]+$/
+            for (const [path, file] of Object.entries(zip.files)) {
+              if (globPattern.test(path) && !file.dir) {
+                messageFile = file
+                foundPath = path
+                break
+              }
+            }
+          }
+          
           if (!messageFile) {
             // List available files to help user
             const files = Object.keys(zip.files).filter(name => !name.endsWith('/'))
