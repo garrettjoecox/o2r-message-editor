@@ -28,6 +28,7 @@ export function FileUpload({ onFileLoad }: FileUploadProps) {
           const possiblePaths = [
             'override/text/nes_message_data_static/nes_message_data_static',
             'text/nes_message_data_static/nes_message_data_static',
+            'text/nes_message_data_static/ntsc_nes_message_data_static',
           ]
           
           let messageFile = null
